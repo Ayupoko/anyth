@@ -1,0 +1,24 @@
+
+<h3>OOOさんの予約履歴一覧</h3>
+<div class="col-md-8 offset-md-1">
+  <table class="table table-hover table-inverse">
+  <thead>
+      <th>予約日</th>
+      <th>席番号</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>（取消）</th>
+      <th colspan="3"></th>
+  </thead>
+
+    <% @reservations.each do |reservation| %>
+     <tr>
+      <td><%= reservation.created_at.strftime(("%Y年%-m月%-d日 %H時%M分")) %></td>
+      <td><%= reservation.space_id %></td>
+      <td><%= reservation.start_time.strftime(("%Y年%-m月%-d日 %H時%M分")) %></td>
+      <td><%= reservation.end_time.strftime(("%Y年%-m月%-d日 %H時%M分")) %></td>
+      <td><%= link_to "取消", reservation_path(reservation), method: :delete, "data-confirm" => "予約を取消しますか？" %></td>
+    <% end %>
+    </table>
+    </div>
+

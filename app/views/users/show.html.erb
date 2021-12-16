@@ -1,13 +1,16 @@
-<h2>マイページ</h2>
-<h2>登録情報　<%= link_to "編集はできないようにしよう", edit_user_path %></h2>
+<div class="py-3 ml-5 h3">マイページ</div>
+<div class="col-auto mr-auto container container-m mx-4 h4">登録情報</div>
 
+<table class="table">
+ <tr><td>氏名</td><td><%= @user.full_name %></td></tr>
+ <tr><td>カナ</td><td><%= @user.full_name_kana %></td></tr>
+ <tr><td>郵便番号</td><td><%= @user.postal_code %></td></tr>
+ <tr><td>住所</td><td><%= @user.address %></td></tr>
+ <tr><td>電話番号</td><td><%= @user.telephone_number %></td></tr> 
+ <tr><td>メールアドレス</td><td><%= @user.email %></td></tr>
+ <tr><td>身分証</td><td><%= image_tag @user.image_id.to_s %></td></tr> 
+ <tr><td>身分確認動画</td><td><%= video_tag(@user.movie.to_s, :controls => true, width: 500 ) %></td></tr> 
+</table>
 
-氏名  <%= @user.full_name %></br>
-カナ  <%= @user.full_name_kana %></br>
-郵便番号<%= @user.postal_code %></br>
-住所<%= @user.address %></br>
-電話番号<%= @user.telephone_number %></br>
-メールアドレス<%= @user.email %></br>
-
-
-予約履歴<%=  "一覧を見る" %>
+<%= link_to "予約履歴", reservations_path %>
+<%= link_to "退会する", users_quit_path %>

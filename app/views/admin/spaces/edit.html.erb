@@ -1,2 +1,9 @@
-<h1>Admin::Spaces#edit</h1>
-<p>Find me in app/views/admin/spaces/edit.html.erb</p>
+<div class="mt-5 ml-5 h3">席情報編集</div>
+
+<div class="container container-m py-3 ml-4 h5">
+  <%= form_with model: @space, url:admin_space_path, local:true do |f| %>
+  <p class="h5"> 名前<%= f.text_field :name %></p>
+  <p class="h5"> 説明<%= f.text_field :introduction %></p>
+  <p class="h5"><%= f.submit "更新" %></p>
+  <% end %>
+</div>

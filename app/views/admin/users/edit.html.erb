@@ -1,2 +1,32 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h2><%= @user.full_name %>さんの会員情報編集</h2>
+
+  会員ID　<%= @user.id %></br>
+<%= form_with model: @user, url:admin_user_path, local:true do |f| %>
+  氏名
+  <%= f.text_field :last_name %><%= f.text_field :first_name %></br>
+  フリガナ
+  <%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></br>
+  郵便番号
+  <%= f.text_field :postal_code %></br>
+  住所
+  <%= f.text_field :address %></br>
+  電話番号
+  <%= f.text_field :telephone_number %></br>
+  メールアドレス
+  <%= f.text_field :email%></br>
+  会員ステータス
+  <%= f.radio_button :is_active, :true %>
+  有効
+  <%= f.radio_button :is_active, :false %>
+  退会</br>
+  本人確認
+  <%= f.radio_button :status, :true %>
+  済
+  <%= f.radio_button :status, :false %>
+  未</br>
+  
+  身分証<%= image_tag @user.image_id.to_s %></br>
+  身分確認動画<%= video_tag(@user.movie.to_s, :controls => true, width: 100 ) %> </br>
+ 
+  <%= f.submit "変更を保存" %>
+  <% end %>

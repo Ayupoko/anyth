@@ -1,2 +1,33 @@
-<h1>Admin::Spaces#index</h1>
-<p>Find me in app/views/admin/spaces/index.html.erb</p>
+<div class="py-3 ml-5 h3">席情報</div>
+
+<div class="col-md-8 offset-md-1">
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th class="text-center">名前</th>
+      <th class="text-center">説明</th>
+      <th class="text-center"></th>
+    </tr>
+  </thead>
+  
+  
+  <%= form_with model: @space, url:admin_spaces_path, local:true do |f| %>
+    <tr>
+      <th class="text-center"><%= f.text_field :name %></th>
+      <th class="text-center"><%= f.text_field :introduction %></th>
+      <th class="text-center"><%= f.submit "新規登録" %></th>
+    </tr> 
+  <% end %>
+
+  <tbody>
+    <% @spaces.each do |space| %>
+     <tr>
+      <td class="text-center"><%= space.name %></td>
+      <td class="text-center"><%= space.introduction %></td>
+      <td class="text-center"><%= link_to "編集する", edit_admin_space_path(space) %></td>
+     </tr>
+    <% end %>
+
+  </tbody>
+  </table>
+    </div>

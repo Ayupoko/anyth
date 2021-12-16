@@ -1,0 +1,26 @@
+<div class="py-3 ml-5 h3">全予約一覧</div>
+<div class="col-md-8 offset-md-1">
+  <table class="table table-hover table-inverse">
+  <thead>
+      <th>予約日</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>（取消）</th>
+      <th colspan="3"></th>
+  </thead>
+
+    <% @reservations.each do |reservation| %>
+     <tr>
+      <td><%= reservation.created_at.strftime(("%Y年%-m月%-d日 %H時%M分")) %></td>
+      <td><%= reservation.start_time.strftime(("%Y年%-m月%-d日 %H時%M分")) %></td>
+      <td><%= reservation.end_time.strftime(("%Y年%-m月%-d日 %H時%M分")) %></td>
+      <td><%= reservation.user.id %></td>
+      <td><%= reservation.user.full_name %></td>
+      <td><%= link_to "取消", reservation_path(reservation), method: :delete, "data-confirm" => "予約を取消しますか？" %></td>
+    <% end %>
+    </table>
+    <div class="mx-auto h5" style="width: 300px;"><%= paginate @reservations %></div>
+    </div>
+    

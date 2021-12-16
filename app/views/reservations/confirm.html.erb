@@ -1,0 +1,17 @@
+<h3>予約情報確認</h3>
+    <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+    ▼利用開始日時</br>
+    <%= @reservation.start_time.strftime(("%Y年%-m月%-d日 (#{wd[@reservation.start_time.wday]})%H時%M分")) %></br>
+    ▼利用終了日時</br>
+    <%= @reservation.end_time.strftime(("%Y年%-m月%-d日 (#{wd[@reservation.end_time.wday]})%H時%M分")) %></br>
+
+    <%= form_with model: @reservation, url:reservations_path, local:true do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :space_id, value: @reservation.space_id %>
+    <%= f.hidden_field :start_date, value: @reservation.start_date %>
+    <%= f.hidden_field :start_time, value: @reservation.start_time %>
+    <%= f.hidden_field :end_date, value: @reservation.end_date %>
+    <%= f.hidden_field :end_time, value: @reservation.end_time %>
+    
+    <%= f.submit "予約を確定する" %>
+    <% end %>

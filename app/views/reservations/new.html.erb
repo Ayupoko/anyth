@@ -1,0 +1,126 @@
+<div class="py-3 ml-5 h3">予約画面</div>
+
+<%= form_with model: @reservation, url:reservations_confirm_path, local:true do |f| %>
+
+<div class="col-auto mr-auto container container-m mx-4 ">
+  <table class="table table-bordered,table table-sm" > 
+    
+  <thead>
+  <tr class="text-center"> 
+    <% @timelines.each_with_index do |time, index| %>
+    <td>
+      <% if index == 0 %>
+      <%= @now.strftime(("%m/%d")) %>
+      <% elsif time == '00:00' %>
+      <span><%= (@now + 60*60*24).strftime(("%m/%d")) %></span>
+      <% end %>
+    </td>
+    <% end %>
+  </tr>
+  </thead>
+  
+  <tbody>
+  <tr class="text-center h6">
+    <% @timelines.each do |time| %>
+    <th>
+      <span><%= time %></span>
+    </th>
+    <% end %>
+
+  </tr>
+
+  <tr>
+    <% @space_statuses.first.each do |val| %>
+    <th class="text-center h3">
+      <span><%= val %></span>
+    </th>
+    <% end %>
+    <td class="d-flex align-items-center h5 pr-5"><%= f.radio_button :select_space, 1 %>席1</td>
+  </tr> 
+  
+    <tr>
+    <% @space_statuses.second.each do |val| %>
+    <th class="text-center h3">
+      <span><%= val %></span>
+    </th>
+    <% end %>
+    <td class="d-flex align-items-center h5 pr-5"><%= f.radio_button :select_space, 2 %>席2</td>
+  </tr> 
+  
+    <tr>
+    <% @space_statuses.third.each do |val| %>
+    <th class="text-center h3">
+      <span><%= val %></span>
+    </th>
+    <% end %>
+    <td class="d-flex align-items-center h5 pr-5"><%= f.radio_button :select_space, 3 %>席3</td>
+  </tr> 
+  
+    <tr>
+    <% @space_statuses.fourth.each do |val| %>
+    <th class="text-center h3">
+      <span><%= val %></span>
+    </th>
+    <% end %>
+    <td class="d-flex align-items-center h5 pr-5"><%= f.radio_button :select_space, 4 %>席4</td>
+  </tr> 
+  </tbody>
+  
+  </table>
+</div>
+
+
+<div class="container container-m py-3 ml-4 h3">
+<button type="button" class="btn btn-outline-warning">
+  <%= link_to "前のスケジュールへ", new_reservation_path(now: @now, type: "back") %>
+</button>
+<button type="button" class="btn btn-outline-warning">
+  <%= link_to "次のスケジュールへ", new_reservation_path(now: @now, type: "next") %>
+</button><br>
+</div>
+<% if @reservation.errors.any? %>
+  <ul>
+    <% @reservation.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+    
+    <div class="container container-m py-3 ml-4 h5">
+    ▼利用開始日時</br>
+    <%= f.select :start_date, @reservation_dates %>
+    <%= f.time_select :start_time, minute_step: 30 %></br>
+    ▼利用終了日時</br>
+    <%= f.select :end_date, @reservation_dates %>
+    <%= f.time_select :end_time, minute_step: 30 %> 
+
+    <a class ="ml-3"><%= f.submit "入力内容確認" %></a>
+    <% end %>
+    </div>
+<script>
+    document.getElementById("reservation_start_date").onchange = function(){
+    let date_set = document.getElementById("reservation_start_date").value;
+    let date_obj = new Date(date_set);
+    let change_year = document.getElementById("reservation_start_time_1i");
+    let change_month = document.getElementById("reservation_start_time_2i");
+    let change_day = document.getElementById("reservation_start_time_3i");
+    change_year.value = date_obj.getFullYear();
+    change_month.value = date_obj.getMonth() +1;
+    change_day.value = date_obj.getDate();
+    console.log(change_year.value, change_month.value, change_day.value);
+  }
+</script>
+  
+  <script>
+    document.getElementById("reservation_end_date").onchange = function(){
+    let date_set = document.getElementById("reservation_end_date").value;
+    let date_obj = new Date(date_set);
+    let change_year = document.getElementById("reservation_end_time_1i");
+    let change_month = document.getElementById("reservation_end_time_2i");
+    let change_day = document.getElementById("reservation_end_time_3i");
+    change_year.value = date_obj.getFullYear();
+    change_month.value = date_obj.getMonth() +1;
+    change_day.value = date_obj.getDate();
+    console.log(change_year,change_month,change_day);
+  }
+</script>
