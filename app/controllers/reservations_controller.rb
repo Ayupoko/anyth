@@ -101,7 +101,6 @@ class ReservationsController < ApplicationController
       end
     end
   end
-  
 end
 
 

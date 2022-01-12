@@ -1,16 +1,19 @@
+<div style="height: 70px; width:40%; background-color: #ffe8de">
 <div class="py-3 ml-5 h3">マイページ</div>
-<div class="col-auto mr-auto container container-m mx-4 h4">登録情報</div>
-
-<table class="table">
- <tr><td>氏名</td><td><%= @user.full_name %></td></tr>
- <tr><td>カナ</td><td><%= @user.full_name_kana %></td></tr>
- <tr><td>郵便番号</td><td><%= @user.postal_code %></td></tr>
- <tr><td>住所</td><td><%= @user.address %></td></tr>
- <tr><td>電話番号</td><td><%= @user.telephone_number %></td></tr> 
- <tr><td>メールアドレス</td><td><%= @user.email %></td></tr>
- <tr><td>身分証</td><td><%= image_tag @user.image_id.to_s %></td></tr> 
- <tr><td>身分確認動画</td><td><%= video_tag(@user.movie.to_s, :controls => true, width: 500 ) %></td></tr> 
+</div>
+<div class="col-auto mr-auto container container-m mx-4">
+<table class="py-3 ml-5">
+ <tr class="h-100 border-bottom"><th>氏名</th><td><%= @user.full_name %></td></tr>
+ <tr class="border-bottom"><th>カナ</th><td><%= @user.full_name_kana %></td></tr>
+ <tr class="border-bottom"><th>郵便番号</th><td><%= @user.postal_code %></td></tr>
+ <tr class="border-bottom"><th>住所</th><td><%= @user.address %></td></tr>
+ <tr class="border-bottom"><th>電話番号</th><td><%= @user.telephone_number %></td></tr> 
+ <tr class="border-bottom"><th>メールアドレス</th><td><%= @user.email %></td></tr>
+ <tr class="border-bottom"><th>身分証</th><td><%= image_tag @user.image_id.to_s, size: '200x200'  %></td></tr> 
+ <tr class="border-bottom"><th>身分確認動画</th><td><%= video_tag @user.movie.to_s, :controls => true, width: 500 , size: '200x200' %></td></tr> 
+ <tr class="border-bottom">
+  <th type="button" class="btn btn-outline-secondary"><%= link_to "予約履歴", reservations_path %></th>
+  <td type="button" class="btn btn-outline-secondary"><%= link_to "退会する", users_quit_path %></td>
+ </tr>
 </table>
-
-<%= link_to "予約履歴", reservations_path %>
-<%= link_to "退会する", users_quit_path %>
+</div>

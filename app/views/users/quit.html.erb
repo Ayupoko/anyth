@@ -1,8 +1,15 @@
+<div class="col-auto mr-auto container container-m mx-5 py-5">
 <h2>本当に退会しますか？</h2>
 <h4>
   退会すると、会員登録情報が消去されます。</br>
   退会する場合は、「退会する」をクリックしてください。
 </h4>
 
-<%= link_to "退会しない", user_path(current_user) %>
-<%= link_to "退会する", users_out_path, method: :patch, "data-confirm" => "本当に退会しますか？" %>
+  <button type="button" class="btn btn-outline-secondary">
+   <%= link_to "退会しない", user_path(current_user) %>
+  </button>
+  
+  <button type="button" class="btn btn-outline-secondary">
+   <%= link_to "退会する", users_out_path, method: :patch, "data-confirm" => "本当に退会しますか？" %>
+  </button>
+  </div>
